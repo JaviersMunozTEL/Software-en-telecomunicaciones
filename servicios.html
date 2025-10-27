@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Redes COL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+	    color: black
+        }
+
+        header, footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #0055a5;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .servicios {
+            padding: 30px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        .servicios h2 {
+            margin-bottom: 20px;
+        }
+
+        .cuadros-servicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .cuadro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .cuadro:hover {
+            transform: translateY(-5px);
+        }
+
+        .cuadro span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="5b386baa-b876-48d4-ac63-4cfc255b6d4e.png" alt="Logo Redescol" style="height: 80px;">
+        <h1>Redes COL</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="contratos.html">Contratos</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <section class="servicios">
+        <h2>Servicios</h2>
+        <div class="cuadros-servicios">
+            <div class="cuadro">
+                <span>☁</span>
+                <p>Almacenamiento seguro de contratos en la nube.</p>
+            </div>
+            <div class="cuadro">
+                <span>📄</span>
+                <p>Digitalización y organización de documentos.</p>
+            </div>
+            <div class="cuadro">
+                <span>🌐</span>
+                <p>Acceso en línea a contratos desde cualquier lugar.</p>
+            </div>
+            <div class="cuadro">
+                <span>⏰</span>
+                <p>Gestión de vencimientos y alertas automáticas.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="5b386baa-b876-48d4-ac63-4cfc255b6d4e.png" alt="Logo Redescol" style="height: 60px; display: block; margin: 0 auto 10px;">
+        &copy; 2025 Empresa de Gestión de Contratos | Todos los derechos reservados.
+    </footer>
+</body>
+</html>
