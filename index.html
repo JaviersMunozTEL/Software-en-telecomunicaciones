@@ -1,44 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Inicio - Redes COL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Panel Flask + Azure</title>
 </head>
-<body style="background-image: url('imagenfondo.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
-    
-    <header>
-        <h1>Redes COL</h1>
-    </header>
+<body>
+  <h1>Datos desde Flask</h1>
+  <div id="result">Cargando...</div>
 
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="sobre-nosotros.html">Sobre Nosotros</a>
-        <a href="contratos.html">Contratos</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
+  <script>
+    // URL pública o IP de tu servidor Flask
+    const apiURL = "http://10.0.1.4:5000/data";
 
-    <main class="contenido-centrado">
-	<div class="cuadro-texto">
-            <h1>Gestión Eficiente de Contratos</h1>
-            <p>En Redes COL ofrecemos una solución práctica para empresas de telecomunicaciones que enfrentan problemas con la gestión de sus contratos.</p>
-
-            <p>Centralizamos y organizamos toda la documentación en plataformas digitales, con bases de datos individuales por contrato, lo que facilita el control, el seguimiento y el acceso seguro a la información.</p>
-
-	</div>
-    </main>
-
-    <footer>
-        <img src="5b386baa-b876-48d4-ac63-4cfc255b6d4e.png" alt="Logo Redescol" style="height: 60px; display: block; margin: 0 auto 10px;">
-        &copy; 2025 Empresa de Gestión de Contratos | Todos los derechos reservados.
-    </footer>
-
+    fetch(apiURL)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("result").textContent = JSON.stringify(data);
+      })
+      .catch(err => {
+        document.getElementById("result").textContent = "Error al conectar con Flask: " + err;
+      });
+  </script>
 </body>
 </html>
-
-
-
-
