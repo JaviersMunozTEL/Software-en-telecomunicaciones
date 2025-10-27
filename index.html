@@ -1,25 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Panel Flask + Azure</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Datos Flask</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #1d3557;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #457b9d;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1d3557;
+        }
+        #lista-datos {
+            margin-top: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 300px;
+        }
+        p {
+            margin: 5px 0;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <h1>Datos desde Flask</h1>
-  <div id="result">Cargando...</div>
+    <h1>📊 Datos desde Flask + MySQL</h1>
 
-  <script>
-    // URL pública o IP de tu servidor Flask
-    const apiURL = "http://10.0.1.4:5000/data";
+    <form id="formulario">
+        <input type="text" id="nombre" placeholder="Escribe un nombre" required>
+        <button type="submit">Agregar</button>
+    </form>
 
-    fetch(apiURL)
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("result").textContent = JSON.stringify(data);
-      })
-      .catch(err => {
-        document.getElementById("result").textContent = "Error al conectar con Flask: " + err;
-      });
-  </script>
+    <div id="lista-datos">Cargando datos...</div>
+
+    <script>
+        const API_URL = "https://kind-smoke-036a9241e.3.azurestaticapps.net/"; // 🔹 Cambia esta URL por tu dominio Flask
+
+        async function cargarDatos() {
+            const res = await fetch(`${API_URL}/data`);
+            const datos = await res.json();
+            
+            const contenedor = document.getElementById("lista-datos");
+            contenedor.innerHTML = "";
+
+            if (datos.length === 0) {
+                contenedor.innerHTML = "<p>No hay datos registrados.</p>";
+                return;
+            }
+
+            datos.forEach(d => {
+                const p = document.createElement("p");
+                p.textContent = d.nombre;
+                contenedor.appendChild(p);
+            });
+        }
+
+        document.getElementById("formulario").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre").value;
+            await fetch(`${API_URL}/add`, {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: `nombre=${encodeURIComponent(nombre)}`
+            });
+            document.getElementById("nombre").value = "";
+            cargarDatos();
+        });
+
+        // Cargar los datos al inicio
+        cargarDatos();
+    </script>
 </body>
 </html>
